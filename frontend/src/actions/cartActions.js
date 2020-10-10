@@ -7,7 +7,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
     const { data } = await axios.get(`/api/products/${id}`);
     dispatch({
       type: CART_ADD_ITEM,
-      paylocartItemsad: {
+      payload: {
         product: data._id,
         name: data.name,
         price: data.price,
@@ -16,7 +16,7 @@ export const addToCart = (id, qty) => async (dispatch, getState) => {
         qty,
       },
     });
-    localStorage.setItem('', JSON.stringify(getState().cart.cartItems));
+    localStorage.setItem('cartItems', JSON.stringify(getState().cart.cartItems));
   } catch (error) {
     console.log(error);
   }
