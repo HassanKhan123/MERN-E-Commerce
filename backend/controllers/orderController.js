@@ -30,10 +30,9 @@ const addOrderItems = asyncHandler(async (req, res) => {
       totalPrice,
       user: req.user._id,
     });
+    const createdOrder = await order.save();
+    res.status(201).json(createdOrder);
   }
-
-  const createdOrder = await order.save()
-  res.status(201).json(createdOrder)
 });
 
 export { addOrderItems };
